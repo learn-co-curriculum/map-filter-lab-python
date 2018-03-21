@@ -1,195 +1,235 @@
 
-# For loops
+# Functions with arguments lab
 
-### Learning Objectives
+### Introduction
 
-* Understand the components of a point in a graph, an $x$ value, and a $y$ value 
-* Understand how to plot a point on a graph, from a point's $x$ and $y$ value
-* Get a sense of how to use a graphing library, like Plotly, to answer questions about our data
+In this lesson, we will be scoping out some of the things that we can do while in Albuquerque.  To do so, we'll be working with information pulled from the Yelp.  Yelp is great for learning about what to do in Albuquerque, but it gives us back a lot of information.  We'll use what we know about functions to format out data. 
 
-### Picking up where we last left off
+### Exploring two restuarants in Albuquerque
 
-In the last lesson, we plotted some of our travel data.
+This is what the Yelp provides us for a information about a single restaurant.  Below is information about Fork and Fig, but all restaurants are provided with this information.
 
 
 ```python
-import pandas
-file_name = './cities.xlsx'
-travel_df = pandas.read_excel(file_name)
-cities = travel_df.to_dict('records')
+fork_fig = {'categories': [{'alias': 'burgers', 'title': 'Burgers'},
+  {'alias': 'sandwiches', 'title': 'Sandwiches'},
+  {'alias': 'salad', 'title': 'Salad'}],
+ 'coordinates': {'latitude': 35.10871, 'longitude': -106.56739},
+ 'display_phone': '(505) 881-5293',
+ 'distance': 3571.724649307866,
+ 'id': 'fork-and-fig-albuquerque',
+ 'image_url': 'https://s3-media1.fl.yelpcdn.com/bphoto/_-DpXKfS3jv6DyA47g6Fxg/o.jpg',
+ 'is_closed': False,
+ 'location': {'address1': '6904 Menaul Blvd NE',
+  'address2': 'Ste C',
+  'address3': '',
+  'city': 'Albuquerque',
+  'country': 'US',
+  'display_address': ['6904 Menaul Blvd NE', 'Ste C', 'Albuquerque, NM 87110'],
+  'state': 'NM',
+  'zip_code': '87110'},
+ 'name': 'Fork & Fig',
+ 'phone': '+15058815293',
+ 'price': '$$',
+ 'rating': 4.5,
+ 'review_count': 604,
+ 'transactions': [],
+ 'url': 'https://www.yelp.com/biz/fork-and-fig-albuquerque?adjust_creative=SYc8R4Gowqru5h4SBKZXsQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=SYc8R4Gowqru5h4SBKZXsQ'}
 ```
 
+For example, here is another one.
+
 
 ```python
-import plotly
-
-plotly.offline.init_notebook_mode(connected=True)
-
-x_values = [cities[0]['City'], cities[1]['City'], cities[2]['City']]
-y_values = [cities[0]['Population'], cities[1]['Population'], cities[2]['Population']]
-trace_first_three_pops = {'x': x_values, 'y': y_values, 'type': 'bar'}
-plotly.offline.iplot([trace_first_three_pops])
+frontier_restaurant = {'categories': [{'alias': 'mexican', 'title': 'Mexican'},
+  {'alias': 'diners', 'title': 'Diners'},
+  {'alias': 'tradamerican', 'title': 'American (Traditional)'}],
+ 'coordinates': {'latitude': 35.0808088832532, 'longitude': -106.619402244687},
+ 'display_phone': '(505) 266-0550',
+ 'distance': 4033.6583235266075,
+ 'id': 'frontier-restaurant-albuquerque-2',
+ 'image_url': 'https://s3-media4.fl.yelpcdn.com/bphoto/M9L2z6-G0NobuDJ6YTh6VA/o.jpg',
+ 'is_closed': False,
+ 'location': {'address1': '2400 Central Ave SE',
+  'address2': '',
+  'address3': '',
+  'city': 'Albuquerque',
+  'country': 'US',
+  'display_address': ['2400 Central Ave SE', 'Albuquerque, NM 87106'],
+  'state': 'NM',
+  'zip_code': '87106'},
+ 'name': 'Frontier Restaurant',
+ 'phone': '+15052660550',
+ 'price': '$',
+ 'rating': 4.0,
+ 'review_count': 1369,
+ 'transactions': [],
+ 'url': 'https://www.yelp.com/biz/frontier-restaurant-albuquerque-2?adjust_creative=SYc8R4Gowqru5h4SBKZXsQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=SYc8R4Gowqru5h4SBKZXsQ'}
 ```
 
-
-<script>requirejs.config({paths: { 'plotly': ['https://cdn.plot.ly/plotly-latest.min']},});if(!window.Plotly) {{require(['plotly'],function(plotly) {window.Plotly=plotly;});}}</script>
-
-
-
-<div id="f6c24ddb-1cf5-4fe7-a629-aaa310454589" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("f6c24ddb-1cf5-4fe7-a629-aaa310454589", [{"x": ["Solta", "Greenville", "Buenos Aires"], "y": [1700, 84554, 13591863], "type": "bar"}], {}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
-
-
-In this lesson, we will use our `for` loop to display information about our travel locations.
-
-### Learning Objectives
-
-### Introduction to the For Loop
-
-Our `cities` list contains information about the top 12 cities.  For our upcoming iteration tasks, it will be useful to have a list of the numbers 0 through 11.  Use what we know about `len` and `range`to generate a list of numbers 1 through 11.  Assign this to a variable called `city_indices`.
+One way to quickly view a dictionary is to look at the keys of the dictionary.
 
 
 ```python
-city_indices = list(range(0, len(cities)))
-city_indices # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-```
-
-
-
-
-    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-
-
-
-Now we want to create labels for each of the cities. We'll provide a list of the `citie_names` for you. 
-
-
-```python
-city_names = ['Solta', 'Greenville', 'Buenos Aires', 'Los Cabos', 'Walla Walla Valley', 'Marakesh', 
-              'Albuquerque', 'Archipelago Sea', 'Iguazu Falls', 'Salina Island', 'Toronto', 'Pyeongchang']
-```
-
-Your task is to assign the variable `text` equal to a list, with each element equal to the city name and it's corresponding rank.  For example, the first element would be, `"1. Solta"` and the second would be `"2. Greenville"`.  Use a `for` loop, `city_indices` and `city_names` to accomplish this.
-
-
-```python
-names_and_ranks = []
-for i in city_indices:
-    names_and_ranks.append(str(i + 1) + ". " + city_names[i])
-```
-
-
-```python
-names_and_ranks[0] # '1. Solta'
-names_and_ranks[-1] # '12. Pyeongchang'
+fork_fig.keys()
 ```
 
 
 
 
-    '12. Pyeongchang'
+    dict_keys(['categories', 'coordinates', 'display_phone', 'distance', 'id', 'image_url', 'is_closed', 'location', 'name', 'phone', 'price', 'rating', 'review_count', 'transactions', 'url'])
 
 
-
-Ok, now let's create a new variable called `city_populations`.  Use a `for` loop to iterate through `cities` and have `city_populations` equal to each of the populations.
 
 
 ```python
-city_populations = []
-for city in cities:
-    city_populations.append(city['Population'])
-```
-
-
-```python
-city_populations
+frontier_restaurant.keys()
 ```
 
 
 
 
-    [1700,
-     84554,
-     13591863,
-     287651,
-     32237,
-     928850,
-     559277,
-     60000,
-     0,
-     4000,
-     630,
-     2581000]
+    dict_keys(['categories', 'coordinates', 'display_phone', 'distance', 'id', 'image_url', 'is_closed', 'location', 'name', 'phone', 'price', 'rating', 'review_count', 'transactions', 'url'])
 
 
 
-Great! Now we can begin to plot this data.  First, let's create a trace of our populations and set it to the variable `trace_populations`.
+As you can see, Yelp provides us with the same information on both restaurants.  
+
+### Writing our functions
+
+Ok, now let's write our functions.  Write a function called `restaurant_name` that provided a dictionary representing a restaurant like you saw above, resturns that restaurant's name.
 
 
 ```python
-trace_populations = {'x': names_and_ranks, 'y': city_populations, 'text': names_and_ranks, 'type': 'bar', 'name': 'populations'}
+def restaurant_name(restaurant):
+    return restaurant['name']
 ```
 
 
 ```python
-import plotly
-plotly.offline.init_notebook_mode(connected=True)
-plotly.offline.iplot([trace_populations])
+restaurant_name(frontier_restaurant) # 'Frontier Restaurant'
 ```
 
 
-<script>requirejs.config({paths: { 'plotly': ['https://cdn.plot.ly/plotly-latest.min']},});if(!window.Plotly) {{require(['plotly'],function(plotly) {window.Plotly=plotly;});}}</script>
 
 
+    'Frontier Restaurant'
 
-<div id="2d45f11b-a343-4bed-ba9c-33e0e0979f40" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("2d45f11b-a343-4bed-ba9c-33e0e0979f40", [{"x": ["1. Solta", "2. Greenville", "3. Buenos Aires", "4. Los Cabos", "5. Walla Walla Valley", "6. Marakesh", "7. Albuquerque", "8. Archipelago Sea", "9. Iguazu Falls", "10. Salina Island", "11. Toronto", "12. Pyeongchang"], "y": [1700, 84554, 13591863, 287651, 32237, 928850, 559277, 60000, 0, 4000, 630, 2581000], "text": ["1. Solta", "2. Greenville", "3. Buenos Aires", "4. Los Cabos", "5. Walla Walla Valley", "6. Marakesh", "7. Albuquerque", "8. Archipelago Sea", "9. Iguazu Falls", "10. Salina Island", "11. Toronto", "12. Pyeongchang"], "type": "bar", "name": "populations"}], {}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
 
-
-Now we want declare a variable called `city_areas` that points to a list of all of the areas of the cities.  Let's use a `for` loop to iterate through our `cities` and have `city_areas` equal to each area of the city.  
 
 
 ```python
-city_areas = []
-for city in cities:
-    city_areas.append(city['Area'])
+restaurant_name(fork_fig) # 'Frontier Restaurant'
+```
+
+
+
+
+    'Fork & Fig'
+
+
+
+Now write a function called `restaurant_rating` that returns the rating of the restaurant provided a function.
+
+
+```python
+def restaurant_rating(restaurant):
+    return restaurant['rating']
 ```
 
 
 ```python
-trace_areas = {'x': names_and_ranks, 'y': city_areas, 'text': names_and_ranks, 'type': 'bar', 'name': 'areas'}
+restaurant_rating(frontier_restaurant) # 4.0
+```
+
+
+
+
+    4.0
+
+
+
+
+```python
+restaurant_rating(fork_fig) # 4.5
+```
+
+
+
+
+    4.5
+
+
+
+### Comparing restaurants
+
+Now let's write a function called `is_better` that returns `True` if a restaurant has a higher rating than an alternative restaurant.  The first argument should be called `restaurant` and the second argument should be called `alternative`.  The function returns `False` if the two ratings are equal.
+
+
+```python
+def is_better(restaurant, alternative):
+    return restaurant['rating'] > alternative['rating']
 ```
 
 
 ```python
-import plotly
-plotly.offline.init_notebook_mode(connected=True)
-plotly.offline.iplot([trace_populations, trace_areas])
+is_better(frontier_restaurant, fork_fig) # False
+is_better(fork_fig, frontier_restaurant) # True
+is_better(fork_fig, fork_fig) # False
 ```
 
 
-<script>requirejs.config({paths: { 'plotly': ['https://cdn.plot.ly/plotly-latest.min']},});if(!window.Plotly) {{require(['plotly'],function(plotly) {window.Plotly=plotly;});}}</script>
+
+
+    False
 
 
 
-<div id="0f3ab136-e93f-4344-ab7d-a50c377b0ab8" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("0f3ab136-e93f-4344-ab7d-a50c377b0ab8", [{"x": ["1. Solta", "2. Greenville", "3. Buenos Aires", "4. Los Cabos", "5. Walla Walla Valley", "6. Marakesh", "7. Albuquerque", "8. Archipelago Sea", "9. Iguazu Falls", "10. Salina Island", "11. Toronto", "12. Pyeongchang"], "y": [1700, 84554, 13591863, 287651, 32237, 928850, 559277, 60000, 0, 4000, 630, 2581000], "text": ["1. Solta", "2. Greenville", "3. Buenos Aires", "4. Los Cabos", "5. Walla Walla Valley", "6. Marakesh", "7. Albuquerque", "8. Archipelago Sea", "9. Iguazu Falls", "10. Salina Island", "11. Toronto", "12. Pyeongchang"], "type": "bar"}, {"x": ["1. Solta", "2. Greenville", "3. Buenos Aires", "4. Los Cabos", "5. Walla Walla Valley", "6. Marakesh", "7. Albuquerque", "8. Archipelago Sea", "9. Iguazu Falls", "10. Salina Island", "11. Toronto", "12. Pyeongchang"], "y": [59, 68, 4758, 3750, 33, 200, 491, 8300, 672, 27, 2731571, 3194], "text": ["1. Solta", "2. Greenville", "3. Buenos Aires", "4. Los Cabos", "5. Walla Walla Valley", "6. Marakesh", "7. Albuquerque", "8. Archipelago Sea", "9. Iguazu Falls", "10. Salina Island", "11. Toronto", "12. Pyeongchang"], "type": "bar", "name": "areas"}], {}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
-
-
-Ok, let's just plot the middle areas separately now.
+Now let's write a function called `is_cheaper` that returns `True` if a restaurant has a higher price, that is has more `'$'` signs, than an alternative restaurant.  The first argument should be called `restaurant` and the second argument should be called `alternative`.  The function returns `False` if the two prices are equal.
 
 
 ```python
-import plotly
-plotly.offline.init_notebook_mode(connected=True)
-plotly.offline.iplot([middle_trace_areas])
+def is_cheaper(restaurant, alternative):
+    return len(restaurant['price']) < len(alternative['price'])
 ```
 
 
-<script>requirejs.config({paths: { 'plotly': ['https://cdn.plot.ly/plotly-latest.min']},});if(!window.Plotly) {{require(['plotly'],function(plotly) {window.Plotly=plotly;});}}</script>
+```python
+is_cheaper(fork_fig, frontier_restaurant) # False
+is_cheaper(frontier_restaurant, fork_fig) # True
+is_cheaper(fork_fig, fork_fig) # False
+```
 
 
 
-<div id="7718511d-34a6-421d-89f8-348400a624ec" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("7718511d-34a6-421d-89f8-348400a624ec", [{"x": ["4. Los Cabos", "5. Walla Walla Valley", "6. Marakesh", "7. Albuquerque", "8. Archipelago Sea", "9. Iguazu Falls", "10. Salina Island"], "y": [3750, 33, 200, 491, 8300, 672, 27], "text": ["4. Los Cabos", "5. Walla Walla Valley", "6. Marakesh", "7. Albuquerque", "8. Archipelago Sea", "9. Iguazu Falls", "10. Salina Island"], "type": "bar", "name": "areas"}], {}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+
+    False
+
+
+
+Now write a function called `high_rating` than that takes a `restaurant` as a first argument and a number that represents a rating as the second argument.  If the second argument is not provided, then the function returns `True` so long as the retaurant's rating is greater than 4.
+
+
+```python
+def high_rating(restaurant, rating = 4):
+    return restaurant['rating'] > rating
+```
+
+
+```python
+high_rating(fork_fig, 4) # True
+high_rating(fork_fig, 5) # False
+high_rating(fork_fig) # True
+high_rating(frontier_restaurant) # False
+```
+
+
+
+
+    False
+
 
 
 ### Summary
 
-In this section we saw how we can use `for` loops to go through elements of a list and perform the same operation on each.  With using `for` loops we were able to reduce the amount of code that we wrote and write more expressive code.
+Great!  Through this lab we saw how to pass arguments to functions, multiple arguments to functions, and how to implement functinons with default arguments.
