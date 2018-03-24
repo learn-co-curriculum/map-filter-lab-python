@@ -1,13 +1,13 @@
 
-# Functions with arguments lab
+# Conditionals in Python Lab
 
 ### Introduction
 
-In this lesson, we will be scoping out some of the things that we can do while in Albuquerque.  To do so, we'll be working with information pulled from the Yelp.  Yelp is great for learning about what to do in Albuquerque, but it gives us back a lot of information.  We'll use what we know about functions to format out data. 
+In our earlier lab on working with functional arguments, we found ways to work with food in Yelp.  In this lesson, we'll add new methods with our new knowledge of conditionals.
 
-### Exploring two restuarants in Albuquerque
+### Again, our two restuarants in Albuquerque
 
-This is what the Yelp provides us for a information about a single restaurant.  Below is information about Fork and Fig, but all restaurants are provided with this information.
+Let's take another look at our data for a single restaurant.  Once again, we have Fork and Fig, as our sample of the data Yelp will provide on a restaurant.
 
 
 ```python
@@ -37,7 +37,7 @@ fork_fig = {'categories': [{'alias': 'burgers', 'title': 'Burgers'},
  'url': 'https://www.yelp.com/biz/fork-and-fig-albuquerque?adjust_creative=SYc8R4Gowqru5h4SBKZXsQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=SYc8R4Gowqru5h4SBKZXsQ'}
 ```
 
-For example, here is another one.
+And here is Frontier.
 
 
 ```python
@@ -49,7 +49,7 @@ frontier_restaurant = {'categories': [{'alias': 'mexican', 'title': 'Mexican'},
  'distance': 4033.6583235266075,
  'id': 'frontier-restaurant-albuquerque-2',
  'image_url': 'https://s3-media4.fl.yelpcdn.com/bphoto/M9L2z6-G0NobuDJ6YTh6VA/o.jpg',
- 'is_closed': False,
+ 'is_closed': True,
  'location': {'address1': '2400 Central Ave SE',
   'address2': '',
   'address3': '',
@@ -67,7 +67,7 @@ frontier_restaurant = {'categories': [{'alias': 'mexican', 'title': 'Mexican'},
  'url': 'https://www.yelp.com/biz/frontier-restaurant-albuquerque-2?adjust_creative=SYc8R4Gowqru5h4SBKZXsQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=SYc8R4Gowqru5h4SBKZXsQ'}
 ```
 
-One way to quickly view a dictionary is to look at the keys of the dictionary.
+And once again, here are the keys of the dictionaries above.
 
 
 ```python
@@ -81,45 +81,23 @@ fork_fig.keys()
 
 
 
+### Writing functions with conditionals
 
-```python
-frontier_restaurant.keys()
-```
-
-
-
-
-    dict_keys(['categories', 'coordinates', 'display_phone', 'distance', 'id', 'image_url', 'is_closed', 'location', 'name', 'phone', 'price', 'rating', 'review_count', 'transactions', 'url'])
-
-
-
-As you can see, Yelp provides us with the same information on both restaurants.  
-
-### Writing our functions
-
-Ok, now let's write our functions.  Write a function called `restaurant_name` that provided a dictionary representing a restaurant like you saw above, resturns that restaurant's name.
+Now let's write a function called `better_restaurant` that provided two restaurants, resturns the restaurant with the better rating.  The first argument is `restaurant` and the second argument is `alternative`.  
 
 
 ```python
-def restaurant_name(restaurant):
-    return restaurant['name']
+def better_restaurant(restaurant, alternative):
+    if restaurant['rating'] > alternative['rating']:
+        return restaurant
+    else:
+        return alternative
 ```
 
 
 ```python
-restaurant_name(frontier_restaurant) # 'Frontier Restaurant'
-```
-
-
-
-
-    'Frontier Restaurant'
-
-
-
-
-```python
-restaurant_name(fork_fig) # 'Frontier Restaurant'
+better_restaurant(frontier_restaurant, fork_fig)['name'] # 'Fork & Fig'
+better_restaurant(fork_fig, frontier_restaurant)['name'] # 'Fork & Fig'
 ```
 
 
@@ -129,104 +107,72 @@ restaurant_name(fork_fig) # 'Frontier Restaurant'
 
 
 
-Now write a function called `restaurant_rating` that returns the rating of the restaurant provided a function.
+Now let's write a function called `cheaper_restaurant` that returns the restaurant that has a higher price, that is the restaurant that has more `'$'` signs, than the alternative restaurant.  The first argument is `restaurant` and the second argument is `alternative`.
 
 
 ```python
-def restaurant_rating(restaurant):
-    return restaurant['rating']
+def cheaper_restaurant(restaurant, alternative):
+    if len(restaurant['price']) < len(alternative['price']):
+        return restaurant
+    else:
+        return alternative
 ```
 
 
 ```python
-restaurant_rating(frontier_restaurant) # 4.0
-```
-
-
-
-
-    4.0
-
-
-
-
-```python
-restaurant_rating(fork_fig) # 4.5
+cheaper_restaurant(fork_fig, frontier_restaurant)['name'] # 'Frontier Restaurant'
+cheaper_restaurant(frontier_restaurant, fork_fig)['name'] # 'Frontier Restaurant'
 ```
 
 
 
 
-    4.5
+    'Frontier Restaurant'
 
 
 
-### Comparing restaurants
+### Conditionals and Loops
 
-Now let's write a function called `is_better` that returns `True` if a restaurant has a higher rating than an alternative restaurant.  The first argument should be called `restaurant` and the second argument should be called `alternative`.  The function returns `False` if the two ratings are equal.
-
-
-```python
-def is_better(restaurant, alternative):
-    return restaurant['rating'] > alternative['rating']
-```
+Let's continue our work of conditionals by seeing how they can be combined with loops.  So write a function called `open_restaurants` that takes as an argument a list of restaurants and returns only a list of only the restaurants that are not closed.  
 
 
 ```python
-is_better(frontier_restaurant, fork_fig) # False
-is_better(fork_fig, frontier_restaurant) # True
-is_better(fork_fig, fork_fig) # False
+fork_fig['is_closed'] # False
+frontier_restaurant['is_closed'] # True
 ```
 
 
 
 
-    False
+    True
 
 
-
-Now let's write a function called `is_cheaper` that returns `True` if a restaurant has a higher price, that is has more `'$'` signs, than an alternative restaurant.  The first argument should be called `restaurant` and the second argument should be called `alternative`.  The function returns `False` if the two prices are equal.
 
 
 ```python
-def is_cheaper(restaurant, alternative):
-    return len(restaurant['price']) < len(alternative['price'])
+restaurants = [fork_fig, frontier_restaurant]
 ```
 
 
 ```python
-is_cheaper(fork_fig, frontier_restaurant) # False
-is_cheaper(frontier_restaurant, fork_fig) # True
-is_cheaper(fork_fig, fork_fig) # False
-```
-
-
-
-
-    False
-
-
-
-Now write a function called `high_rating` than that takes a `restaurant` as a first argument and a number that represents a rating as the second argument.  If the second argument is not provided, then the function returns `True` so long as the retaurant's rating is greater than 4.
-
-
-```python
-def high_rating(restaurant, rating = 4):
-    return restaurant['rating'] > rating
+def open_restaurants(restaurants):
+    selected = []
+    for restaurant in restaurants:
+        if not restaurant['is_closed']:
+            selected.append(restaurant)
+    return selected
 ```
 
 
 ```python
-high_rating(fork_fig, 4) # True
-high_rating(fork_fig, 5) # False
-high_rating(fork_fig) # True
-high_rating(frontier_restaurant) # False
+len(open_restaurants(restaurants)) # 1
+open_restaurants(restaurants)[0]['name'] # 'Fork & Fig'
 ```
 
 
 
 
-    False
+    'Fork & Fig'
 
 
 
