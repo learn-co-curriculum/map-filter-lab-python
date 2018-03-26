@@ -1,178 +1,222 @@
 
-# Conditionals in Python Lab
+# Map and Filter in Python Lab
 
 ### Introduction
 
-In our earlier lab on working with functional arguments, we found ways to work with food in Yelp.  In this lesson, we'll add new methods with our new knowledge of conditionals.
-
-### Again, our two restuarants in Albuquerque
-
-Let's take another look at our data for a single restaurant.  Once again, we have Fork and Fig, as our sample of the data Yelp will provide on a restaurant.
+Let's continue to work with our Yelp Api.  
 
 
 ```python
-fork_fig = {'categories': [{'alias': 'burgers', 'title': 'Burgers'},
-  {'alias': 'sandwiches', 'title': 'Sandwiches'},
-  {'alias': 'salad', 'title': 'Salad'}],
- 'coordinates': {'latitude': 35.10871, 'longitude': -106.56739},
- 'display_phone': '(505) 881-5293',
- 'distance': 3571.724649307866,
- 'id': 'fork-and-fig-albuquerque',
- 'image_url': 'https://s3-media1.fl.yelpcdn.com/bphoto/_-DpXKfS3jv6DyA47g6Fxg/o.jpg',
- 'is_closed': False,
- 'location': {'address1': '6904 Menaul Blvd NE',
-  'address2': 'Ste C',
-  'address3': '',
-  'city': 'Albuquerque',
-  'country': 'US',
-  'display_address': ['6904 Menaul Blvd NE', 'Ste C', 'Albuquerque, NM 87110'],
-  'state': 'NM',
-  'zip_code': '87110'},
- 'name': 'Fork & Fig',
- 'phone': '+15058815293',
- 'price': '$$',
- 'rating': 4.5,
- 'review_count': 604,
- 'transactions': [],
- 'url': 'https://www.yelp.com/biz/fork-and-fig-albuquerque?adjust_creative=SYc8R4Gowqru5h4SBKZXsQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=SYc8R4Gowqru5h4SBKZXsQ'}
+from restaurants import yelp_restaurants
+# dict_keys(['categories', 'coordinates', 'display_phone', 'distance', 
+# 'id', 'image_url', 'is_closed', 'location', 'name', 'phone', 'price', 
+# 'rating', 'review_count', 'transactions', 'url'])
 ```
 
-And here is Frontier.
-
 
 ```python
-frontier_restaurant = {'categories': [{'alias': 'mexican', 'title': 'Mexican'},
-  {'alias': 'diners', 'title': 'Diners'},
-  {'alias': 'tradamerican', 'title': 'American (Traditional)'}],
- 'coordinates': {'latitude': 35.0808088832532, 'longitude': -106.619402244687},
- 'display_phone': '(505) 266-0550',
- 'distance': 4033.6583235266075,
- 'id': 'frontier-restaurant-albuquerque-2',
- 'image_url': 'https://s3-media4.fl.yelpcdn.com/bphoto/M9L2z6-G0NobuDJ6YTh6VA/o.jpg',
- 'is_closed': True,
- 'location': {'address1': '2400 Central Ave SE',
-  'address2': '',
-  'address3': '',
-  'city': 'Albuquerque',
-  'country': 'US',
-  'display_address': ['2400 Central Ave SE', 'Albuquerque, NM 87106'],
-  'state': 'NM',
-  'zip_code': '87106'},
- 'name': 'Frontier Restaurant',
- 'phone': '+15052660550',
- 'price': '$',
- 'rating': 4.0,
- 'review_count': 1369,
- 'transactions': [],
- 'url': 'https://www.yelp.com/biz/frontier-restaurant-albuquerque-2?adjust_creative=SYc8R4Gowqru5h4SBKZXsQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=SYc8R4Gowqru5h4SBKZXsQ'}
+restaurants = list(map(lambda restaurant: dict(name=restaurant['name'], 
+                                           price=restaurant['price'], 
+                                           is_closed=restaurant['is_closed'],
+                                           review_count=restaurant['review_count'],
+                                          ), yelp_restaurants))
 ```
 
-And once again, here are the keys of the dictionaries above.
+We have a list of five restaurants from the Yelp Api.  Let's take a look at the list.
 
 
 ```python
-fork_fig.keys()
+restaurants
 ```
 
 
 
 
-    dict_keys(['categories', 'coordinates', 'display_phone', 'distance', 'id', 'image_url', 'is_closed', 'location', 'name', 'phone', 'price', 'rating', 'review_count', 'transactions', 'url'])
+    [{'is_closed': False,
+      'name': 'Fork & Fig',
+      'price': '$$',
+      'review_count': 610},
+     {'is_closed': False,
+      'name': 'Salt And Board',
+      'price': '$$',
+      'review_count': 11},
+     {'is_closed': False,
+      'name': 'Frontier Restaurant',
+      'price': '$',
+      'review_count': 1373},
+     {'is_closed': False,
+      'name': 'Nexus Brewery',
+      'price': '$$',
+      'review_count': 680},
+     {'is_closed': False,
+      'name': "Devon's Pop Smoke",
+      'price': '$$',
+      'review_count': 54},
+     {'is_closed': True,
+      'name': 'Cocina Azul',
+      'price': '$$',
+      'review_count': 647},
+     {'is_closed': False,
+      'name': 'Philly Steaks',
+      'price': '$$',
+      'review_count': 25},
+     {'is_closed': True,
+      'name': 'Stripes Biscuit',
+      'price': '$$',
+      'review_count': 20}]
 
 
 
-### Writing functions with conditionals
+### Using map
 
-Now let's write a function called `better_restaurant` that provided two restaurants, resturns the restaurant with the better rating.  The first argument is `restaurant` and the second argument is `alternative`.  
-
-
-```python
-def better_restaurant(restaurant, alternative):
-    if restaurant['rating'] > alternative['rating']:
-        return restaurant
-    else:
-        return alternative
-```
-
-
-```python
-better_restaurant(frontier_restaurant, fork_fig)['name'] # 'Fork & Fig'
-better_restaurant(fork_fig, frontier_restaurant)['name'] # 'Fork & Fig'
-```
-
-
-
-
-    'Fork & Fig'
-
-
-
-Now let's write a function called `cheaper_restaurant` that returns the restaurant that has a higher price, that is the restaurant that has more `'$'` signs, than the alternative restaurant.  The first argument is `restaurant` and the second argument is `alternative`.
-
-
-```python
-def cheaper_restaurant(restaurant, alternative):
-    if len(restaurant['price']) < len(alternative['price']):
-        return restaurant
-    else:
-        return alternative
-```
-
-
-```python
-cheaper_restaurant(fork_fig, frontier_restaurant)['name'] # 'Frontier Restaurant'
-cheaper_restaurant(frontier_restaurant, fork_fig)['name'] # 'Frontier Restaurant'
-```
-
-
-
-
-    'Frontier Restaurant'
-
-
-
-### Conditionals and Loops
-
-Let's continue our work of conditionals by seeing how they can be combined with loops.  So write a function called `open_restaurants` that takes as an argument a list of restaurants and returns only a list of only the restaurants that are not closed.  
+As you can see, it's a little tricky to see the names of all of the restaurants.  Assign a variable `names` to the list of names of the functions.  Use the `map` function to do so.
 
 
 ```python
-fork_fig['is_closed'] # False
-frontier_restaurant['is_closed'] # True
+names = list(map(lambda restaurant: restaurant['name'] ,restaurants))
+names
 ```
 
 
 
 
-    True
+    ['Fork & Fig',
+     'Salt And Board',
+     'Frontier Restaurant',
+     'Nexus Brewery',
+     "Devon's Pop Smoke",
+     'Cocina Azul',
+     'Philly Steaks',
+     'Stripes Biscuit']
 
 
+
+Let's get a sense of how many reviews were written for each of the restaurants.  Assign a variable `review_counts` to equal a list of the `review_count` for each restaurant.  
 
 
 ```python
-restaurants = [fork_fig, frontier_restaurant]
+review_counts = list(map(lambda restaurant: restaurant['review_count'] ,restaurants))
+review_counts
 ```
+
+
+
+
+    [610, 11, 1373, 680, 54, 647, 25, 20]
+
+
+
+Now add up the elements in the list, and assign the result to a variable named `total_reviews`.
+
+
+```python
+total_reviews = sum(review_counts)
+total_reviews
+```
+
+
+
+
+    3420
+
+
+
+It's a little tricky to work with the price in the format of dollars signs.  So write a called `format_restaurants` that changes each restaurant to have the attribute `'price'` point to the number of dollar signs.  We'll get you started with the function, `format_restaurant`.
+
+
+```python
+def format_restaurant(restaurant):
+    if type(restaurant['price']) == str:
+        restaurant['price'] = len(restaurant['price'])
+    return restaurant
+```
+
+
+```python
+format_restaurant(restaurants[0])
+```
+
+
+
+
+    {'is_closed': False, 'name': 'Fork & Fig', 'price': 2, 'review_count': 610}
+
+
+
+Now write a function called `format_restaurants`, that returns a list of restaurants with each of them formatted with price pointing to the respective number.
+
+
+```python
+def format_restaurants(restaurants):
+    return list(map(format_restaurant,restaurants))
+```
+
+
+```python
+format_restaurants(restaurants)
+```
+
+### Filter
+
+Now let's search for restaurants based on specific criteria.  
+
+Write a function called `open_restaurants` that takes in a list of restaurants and only returns those that are open.
 
 
 ```python
 def open_restaurants(restaurants):
-    selected = []
-    for restaurant in restaurants:
-        if not restaurant['is_closed']:
-            selected.append(restaurant)
-    return selected
+    return list(filter(lambda restaurant:not restaurant['is_closed'] ,restaurants))
 ```
 
 
 ```python
-len(open_restaurants(restaurants)) # 1
-open_restaurants(restaurants)[0]['name'] # 'Fork & Fig'
+open_restaurants(restaurants)
+
+# [{'is_closed': False, 'name': 'Fork & Fig', 'price': 2, 'review_count': 610},
+#  {'is_closed': False,
+#   'name': 'Salt And Board',
+#   'price': 2,
+#   'review_count': 11},
+#  {'is_closed': False,
+#   'name': 'Frontier Restaurant',
+#   'price': 1,
+#   'review_count': 1373},
+#  {'is_closed': False,
+#   'name': 'Nexus Brewery',
+#   'price': 2,
+#   'review_count': 680},
+#  {'is_closed': False,
+#   'name': "Devon's Pop Smoke",
+#   'price': 2,
+#   'review_count': 54},
+#  {'is_closed': False, 'name': 'Philly Steaks', 'price': 2, 'review_count': 25}]
+```
+
+Now write a function called `cheapest_restaurants` that returns restaurants those restaurants that have a price of  1, or '$'.  
+
+
+```python
+def cheapest_restaurants(restaurants):
+    return list(filter(lambda restaurant: restaurant['price'] == 1 ,restaurants))
+```
+
+
+```python
+cheapest_restaurants(restaurants)
+
+# [{'is_closed': False,
+#   'name': 'Frontier Restaurant',
+#   'price': 1,
+#   'review_count': 1373}]
 ```
 
 
 
 
-    'Fork & Fig'
+    [{'is_closed': False,
+      'name': 'Frontier Restaurant',
+      'price': 1,
+      'review_count': 1373}]
 
 
 
