@@ -70,7 +70,7 @@ As you can see, it's a little tricky to see the names of all of the restaurants.
 
 
 ```python
-names = None
+names = list(map(lambda restaurant: restaurant['name'], restaurants))
 names
 # ['Fork & Fig',
 #  'Salt And Board',
@@ -82,21 +82,51 @@ names
 #  'Stripes Biscuit']
 ```
 
+
+
+
+    ['Fork & Fig',
+     'Salt And Board',
+     'Frontier Restaurant',
+     'Nexus Brewery',
+     "Devon's Pop Smoke",
+     'Cocina Azul',
+     'Philly Steaks',
+     'Stripes Biscuit']
+
+
+
 Let's get a sense of how many reviews were written for each of the restaurants.  Assign a variable `review_counts` to equal a list of the `review_count` for each restaurant.  
 
 
 ```python
-review_counts = None
+review_counts = list(map(lambda restaurant: restaurant['review_count'], restaurants))
 review_counts # [610, 11, 1373, 680, 54, 647, 25, 20]
 ```
+
+
+
+
+    [610, 11, 1373, 680, 54, 647, 25, 20]
+
+
 
 Now add up the elements in the list, and assign the result to a variable named `total_reviews`.
 
 
 ```python
-total_reviews = None
+total_reviews = 0
+for review_count in review_counts:
+    total_reviews += review_count
 total_reviews # 3420
 ```
+
+
+
+
+    3420
+
+
 
 It's a little tricky to work with the price in the format of dollars signs.  So write a function called `format_restaurants` that changes each restaurant to have the attribute `'price'` point to the number of dollar signs.  We'll get you started with the function, `format_restaurant`.
 
@@ -116,7 +146,7 @@ format_restaurant(restaurants[0]) # {'is_closed': False, 'name': 'Fork & Fig', '
 
 
 
-    {'is_closed': False, 'name': 'Fork & Fig', 'price': 2, 'review_count': 610}
+    {'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610}
 
 
 
@@ -157,6 +187,35 @@ format_restaurants(restaurants)
 #   'review_count': 20}]
 ```
 
+
+
+
+    [{'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610},
+     {'name': 'Salt And Board',
+      'price': 2,
+      'is_closed': False,
+      'review_count': 11},
+     {'name': 'Frontier Restaurant',
+      'price': 1,
+      'is_closed': False,
+      'review_count': 1373},
+     {'name': 'Nexus Brewery',
+      'price': 2,
+      'is_closed': False,
+      'review_count': 680},
+     {'name': "Devon's Pop Smoke",
+      'price': 2,
+      'is_closed': False,
+      'review_count': 54},
+     {'name': 'Cocina Azul', 'price': 2, 'is_closed': True, 'review_count': 647},
+     {'name': 'Philly Steaks', 'price': 2, 'is_closed': False, 'review_count': 25},
+     {'name': 'Stripes Biscuit',
+      'price': 2,
+      'is_closed': True,
+      'review_count': 20}]
+
+
+
 ### Filter
 
 Now let's search for restaurants based on specific criteria.  
@@ -166,7 +225,7 @@ Write a function called `open_restaurants` that takes in a list of restaurants a
 
 ```python
 def open_restaurants(restaurants):
-    pass
+    return list(filter(lambda restaurant: not restaurant['is_closed'], restaurants))
 ```
 
 
@@ -193,12 +252,36 @@ open_restaurants(restaurants)
 #  {'is_closed': False, 'name': 'Philly Steaks', 'price': 2, 'review_count': 25}]
 ```
 
+
+
+
+    [{'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610},
+     {'name': 'Salt And Board',
+      'price': 2,
+      'is_closed': False,
+      'review_count': 11},
+     {'name': 'Frontier Restaurant',
+      'price': 1,
+      'is_closed': False,
+      'review_count': 1373},
+     {'name': 'Nexus Brewery',
+      'price': 2,
+      'is_closed': False,
+      'review_count': 680},
+     {'name': "Devon's Pop Smoke",
+      'price': 2,
+      'is_closed': False,
+      'review_count': 54},
+     {'name': 'Philly Steaks', 'price': 2, 'is_closed': False, 'review_count': 25}]
+
+
+
 Now write a function called `cheapest_restaurants` that returns the restaurants that have a price of  1, or '$'.  
 
 
 ```python
 def cheapest_restaurants(restaurants):
-    pass
+     return list(filter(lambda restaurant: restaurant['price'] <= 1, restaurants))
 ```
 
 
@@ -211,31 +294,49 @@ cheapest_restaurants(restaurants)
 #   'review_count': 1373}]
 ```
 
+
+
+
+    [{'name': 'Frontier Restaurant',
+      'price': 1,
+      'is_closed': False,
+      'review_count': 1373}]
+
+
+
 Next, write a function that filters out only those restaurants that 100 reviews or more, since we want to make sure there is some solid data points backing the reviews -- we are burgeoning data scientists after all!
 
 
 ```python
-def sufficiently_reviewed_restaurants(restuarants)
-    pass
+def sufficiently_reviewed_restaurants(restaurants):
+    return list(filter(lambda restaurant: restaurant['review_count'] >= 100, restaurants))
 ```
 
 
 ```python
-sufficiently_reviewed_restaurants(restuarants)
+sufficiently_reviewed_restaurants(restaurants)
 
-# [{'is_closed': False, 
-#   'name': 'Fork & Fig', 
-#   'price': 2,
-#   'review_count': 610},
-#  {'is_closed': False,
-#   'name': 'Frontier Restaurant',
-#   'price': 1,
-#   'review_count': 1373},
-#  {'is_closed': False,
-#   'name': 'Nexus Brewery',
-#   'price': 2,
-#   'review_count': 680}]
+# [{'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610},
+#  {'name': 'Frontier Restaurant', 'price': 1, 'is_closed': False,  'review_count': 1373},
+#  {'name': 'Nexus Brewery', 'price': 2, 'is_closed': False, 'review_count': 680},
+#  {'name': 'Cocina Azul', 'price': 2, 'is_closed': True, 'review_count': 647}]
 ```
+
+
+
+
+    [{'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610},
+     {'name': 'Frontier Restaurant',
+      'price': 1,
+      'is_closed': False,
+      'review_count': 1373},
+     {'name': 'Nexus Brewery',
+      'price': 2,
+      'is_closed': False,
+      'review_count': 680},
+     {'name': 'Cocina Azul', 'price': 2, 'is_closed': True, 'review_count': 647}]
+
+
 
 ### Summary
 
