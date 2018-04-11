@@ -3,14 +3,11 @@
 
 ### Introduction
 
-Let's continue to work with our Yelp Api.  
+In this lab, we'll put our new knowledge about map and filter to the test. We'll also get back to working with Yelp again. Let's get started!
 
 
 ```python
-from restaurants import yelp_restaurants
-# dict_keys(['categories', 'coordinates', 'display_phone', 'distance', 
-# 'id', 'image_url', 'is_closed', 'location', 'name', 'phone', 'price', 
-# 'rating', 'review_count', 'transactions', 'url'])
+from restaurants import yelp_restaurants # in this line we are simply importing our data we gathered from Yelp.
 ```
 
 
@@ -32,96 +29,76 @@ restaurants
 
 
 
-    [{'is_closed': False,
-      'name': 'Fork & Fig',
+    [{'name': 'Fork & Fig',
       'price': '$$',
+      'is_closed': False,
       'review_count': 610},
-     {'is_closed': False,
-      'name': 'Salt And Board',
+     {'name': 'Salt And Board',
       'price': '$$',
+      'is_closed': False,
       'review_count': 11},
-     {'is_closed': False,
-      'name': 'Frontier Restaurant',
+     {'name': 'Frontier Restaurant',
       'price': '$',
+      'is_closed': False,
       'review_count': 1373},
-     {'is_closed': False,
-      'name': 'Nexus Brewery',
+     {'name': 'Nexus Brewery',
       'price': '$$',
+      'is_closed': False,
       'review_count': 680},
-     {'is_closed': False,
-      'name': "Devon's Pop Smoke",
+     {'name': "Devon's Pop Smoke",
       'price': '$$',
+      'is_closed': False,
       'review_count': 54},
-     {'is_closed': True,
-      'name': 'Cocina Azul',
+     {'name': 'Cocina Azul',
       'price': '$$',
+      'is_closed': True,
       'review_count': 647},
-     {'is_closed': False,
-      'name': 'Philly Steaks',
+     {'name': 'Philly Steaks',
       'price': '$$',
+      'is_closed': False,
       'review_count': 25},
-     {'is_closed': True,
-      'name': 'Stripes Biscuit',
+     {'name': 'Stripes Biscuit',
       'price': '$$',
+      'is_closed': True,
       'review_count': 20}]
 
 
 
 ### Using map
 
-As you can see, it's a little tricky to see the names of all of the restaurants.  Assign a variable `names` to the list of names of the functions.  Use the `map` function to do so.
+As you can see, it's a little tricky to see the names of all of the restaurants.  Assign a variable `names` to equal the list of names of the functions.  Use the `map` function to do so.
 
 
 ```python
-names = list(map(lambda restaurant: restaurant['name'] ,restaurants))
+names = None
 names
+# ['Fork & Fig',
+#  'Salt And Board',
+#  'Frontier Restaurant',
+#  'Nexus Brewery',
+#  "Devon's Pop Smoke",
+#  'Cocina Azul',
+#  'Philly Steaks',
+#  'Stripes Biscuit']
 ```
-
-
-
-
-    ['Fork & Fig',
-     'Salt And Board',
-     'Frontier Restaurant',
-     'Nexus Brewery',
-     "Devon's Pop Smoke",
-     'Cocina Azul',
-     'Philly Steaks',
-     'Stripes Biscuit']
-
-
 
 Let's get a sense of how many reviews were written for each of the restaurants.  Assign a variable `review_counts` to equal a list of the `review_count` for each restaurant.  
 
 
 ```python
-review_counts = list(map(lambda restaurant: restaurant['review_count'] ,restaurants))
-review_counts
+review_counts = None
+review_counts # [610, 11, 1373, 680, 54, 647, 25, 20]
 ```
-
-
-
-
-    [610, 11, 1373, 680, 54, 647, 25, 20]
-
-
 
 Now add up the elements in the list, and assign the result to a variable named `total_reviews`.
 
 
 ```python
-total_reviews = sum(review_counts)
-total_reviews
+total_reviews = None
+total_reviews # 3420
 ```
 
-
-
-
-    3420
-
-
-
-It's a little tricky to work with the price in the format of dollars signs.  So write a called `format_restaurants` that changes each restaurant to have the attribute `'price'` point to the number of dollar signs.  We'll get you started with the function, `format_restaurant`.
+It's a little tricky to work with the price in the format of dollars signs.  So write a function called `format_restaurants` that changes each restaurant to have the attribute `'price'` point to the number of dollar signs.  We'll get you started with the function, `format_restaurant`.
 
 
 ```python
@@ -133,7 +110,7 @@ def format_restaurant(restaurant):
 
 
 ```python
-format_restaurant(restaurants[0])
+format_restaurant(restaurants[0]) # {'is_closed': False, 'name': 'Fork & Fig', 'price': 2, 'review_count': 610}
 ```
 
 
@@ -154,6 +131,30 @@ def format_restaurants(restaurants):
 
 ```python
 format_restaurants(restaurants)
+
+# [{'is_closed': False, 'name': 'Fork & Fig', 'price': 2, 'review_count': 610},
+#  {'is_closed': False,
+#   'name': 'Salt And Board',
+#   'price': 2,
+#   'review_count': 11},
+#  {'is_closed': False,
+#   'name': 'Frontier Restaurant',
+#   'price': 1,
+#   'review_count': 1373},
+#  {'is_closed': False,
+#   'name': 'Nexus Brewery',
+#   'price': 2,
+#   'review_count': 680},
+#  {'is_closed': False,
+#   'name': "Devon's Pop Smoke",
+#   'price': 2,
+#   'review_count': 54},
+#  {'is_closed': True, 'name': 'Cocina Azul', 'price': 2, 'review_count': 647},
+#  {'is_closed': False, 'name': 'Philly Steaks', 'price': 2, 'review_count': 25},
+#  {'is_closed': True,
+#   'name': 'Stripes Biscuit',
+#   'price': 2,
+#   'review_count': 20}]
 ```
 
 ### Filter
@@ -165,7 +166,7 @@ Write a function called `open_restaurants` that takes in a list of restaurants a
 
 ```python
 def open_restaurants(restaurants):
-    return list(filter(lambda restaurant:not restaurant['is_closed'] ,restaurants))
+    pass
 ```
 
 
@@ -192,12 +193,12 @@ open_restaurants(restaurants)
 #  {'is_closed': False, 'name': 'Philly Steaks', 'price': 2, 'review_count': 25}]
 ```
 
-Now write a function called `cheapest_restaurants` that returns restaurants those restaurants that have a price of  1, or '$'.  
+Now write a function called `cheapest_restaurants` that returns the restaurants that have a price of  1, or '$'.  
 
 
 ```python
 def cheapest_restaurants(restaurants):
-    return list(filter(lambda restaurant: restaurant['price'] == 1 ,restaurants))
+    pass
 ```
 
 
@@ -210,16 +211,32 @@ cheapest_restaurants(restaurants)
 #   'review_count': 1373}]
 ```
 
+Next, write a function that filters out only those restaurants that 100 reviews or more, since we want to make sure there is some solid data points backing the reviews -- we are burgeoning data scientists after all!
 
 
+```python
+def sufficiently_reviewed_restaurants(restuarants)
+    pass
+```
 
-    [{'is_closed': False,
-      'name': 'Frontier Restaurant',
-      'price': 1,
-      'review_count': 1373}]
 
+```python
+sufficiently_reviewed_restaurants(restuarants)
 
+# [{'is_closed': False, 
+#   'name': 'Fork & Fig', 
+#   'price': 2,
+#   'review_count': 610},
+#  {'is_closed': False,
+#   'name': 'Frontier Restaurant',
+#   'price': 1,
+#   'review_count': 1373},
+#  {'is_closed': False,
+#   'name': 'Nexus Brewery',
+#   'price': 2,
+#   'review_count': 680}]
+```
 
 ### Summary
 
-Great!  Through this lab we saw how to pass arguments to functions, multiple arguments to functions, and how to implement functinons with default arguments.
+Neat! In this lab, we successfully proved our prowess when it comes to iterating over each element of a list with both `map` and `filter`! We used `map` to format our data into ways that better help us answer questions and extrapolate insights. We used `filter` to return subsets of our data like our restaurants that were only one $ or our restaurants that had 100 or more reviews.
