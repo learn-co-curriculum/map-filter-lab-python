@@ -65,7 +65,9 @@ It's a little tricky to work with the price in the format of dollars signs.  So 
 
 ```python
 def format_restaurant(restaurant):
-    pass
+    if type(restaurant['price']) == str:
+        restaurant['price'] = len(restaurant['price'])
+    return restaurant
 ```
 
 
@@ -164,7 +166,7 @@ cheapest_restaurants(restaurants)
 #   'review_count': 1373}]
 ```
 
-Next, write a function that filters out only those restaurants that 100 reviews or more, since we want to make sure there is some solid data points backing the reviews -- we are burgeoning data scientists after all!
+Next, write a function that filters out only those restaurants that have 100 reviews or more, since we want to make sure there are some solid data points backing the reviews -- we are burgeoning data scientists after all!
 
 
 ```python
