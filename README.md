@@ -12,8 +12,8 @@ from restaurants import yelp_restaurants # in this line we are simply importing 
 
 
 ```python
-restaurants = list(map(lambda restaurant: dict(name=restaurant['name'], 
-                                           price=restaurant['price'], 
+restaurants = list(map(lambda restaurant: dict(name=restaurant['name'],
+                                           price=restaurant['price'],
                                            is_closed=restaurant['is_closed'],
                                            review_count=restaurant['review_count'],
                                           ), yelp_restaurants))
