@@ -130,7 +130,7 @@ def map_format_restaurants(restaurants):
 
 
 ```python
-format_restaurants(restaurants)
+map_format_restaurants(restaurants)
 
 # [{'is_closed': False, 'name': 'Fork & Fig', 'price': 2, 'review_count': 610},
 #  {'is_closed': False,
