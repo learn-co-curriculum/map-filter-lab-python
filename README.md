@@ -31,44 +31,6 @@ We have a list of five restaurants from the Yelp Api.  Let's take a look at the 
 restaurants
 ```
 
-
-
-
-    [{'is_closed': False,
-      'name': 'Fork & Fig',
-      'price': '$$',
-      'review_count': 610},
-     {'is_closed': False,
-      'name': 'Salt And Board',
-      'price': '$$',
-      'review_count': 11},
-     {'is_closed': False,
-      'name': 'Frontier Restaurant',
-      'price': '$',
-      'review_count': 1373},
-     {'is_closed': False,
-      'name': 'Nexus Brewery',
-      'price': '$$',
-      'review_count': 680},
-     {'is_closed': False,
-      'name': "Devon's Pop Smoke",
-      'price': '$$',
-      'review_count': 54},
-     {'is_closed': True,
-      'name': 'Cocina Azul',
-      'price': '$$',
-      'review_count': 647},
-     {'is_closed': False,
-      'name': 'Philly Steaks',
-      'price': '$$',
-      'review_count': 25},
-     {'is_closed': True,
-      'name': 'Stripes Biscuit',
-      'price': '$$',
-      'review_count': 20}]
-
-
-
 ### Using map
 
 As you can see, it's a little tricky to see the names of all of the restaurants due to amount of data. Let's create a new list `names` to contain only the names of all the restaurants from the list above. Use the `map` and `lambda` functions, along with your understanding of a dictionary's structure to do so.
@@ -117,7 +79,7 @@ def format_restaurant(restaurant):
 
 
 ```python
-format_restaurant(restaurants[0]) # {'is_closed': False, 'name': 'Fork & Fig', 'price': 2, 'review_count': 610}
+format_restaurant(restaurants[0]) # {'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610}
 ```
 
 Now write another function called `map_format_restaurants` using `map`, that uses above function and returns a list of restaurants with each of them formatted with price pointing to the respective number.
@@ -132,29 +94,29 @@ def map_format_restaurants(restaurants):
 ```python
 map_format_restaurants(restaurants)
 
-# [{'is_closed': False, 'name': 'Fork & Fig', 'price': 2, 'review_count': 610},
-#  {'is_closed': False,
-#   'name': 'Salt And Board',
-#   'price': 2,
-#   'review_count': 11},
-#  {'is_closed': False,
-#   'name': 'Frontier Restaurant',
-#   'price': 1,
-#   'review_count': 1373},
-#  {'is_closed': False,
-#   'name': 'Nexus Brewery',
-#   'price': 2,
-#   'review_count': 680},
-#  {'is_closed': False,
-#   'name': "Devon's Pop Smoke",
-#   'price': 2,
-#   'review_count': 54},
-#  {'is_closed': True, 'name': 'Cocina Azul', 'price': 2, 'review_count': 647},
-#  {'is_closed': False, 'name': 'Philly Steaks', 'price': 2, 'review_count': 25},
-#  {'is_closed': True,
-#   'name': 'Stripes Biscuit',
-#   'price': 2,
-#   'review_count': 20}]
+#[{'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610},
+# {'name': 'Salt And Board',
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 11},
+# {'name': 'Frontier Restaurant',
+#  'price': 1,
+#  'is_closed': False,
+#  'review_count': 1373},
+# {'name': 'Nexus Brewery',
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 680},
+# {'name': "Devon's Pop Smoke",
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 54},
+# {'name': 'Cocina Azul', 'price': 2, 'is_closed': True, 'review_count': 647},
+# {'name': 'Philly Steaks', 'price': 2, 'is_closed': False, 'review_count': 25},
+# {'name': 'Stripes Biscuit',
+#  'price': 2,
+#  'is_closed': True,
+#  'review_count': 20}]
 ```
 
 ### Filter
@@ -173,24 +135,24 @@ def open_restaurants(restaurants):
 ```python
 open_restaurants(restaurants)
 
-# [{'is_closed': False, 'name': 'Fork & Fig', 'price': 2, 'review_count': 610},
-#  {'is_closed': False,
-#   'name': 'Salt And Board',
-#   'price': 2,
-#   'review_count': 11},
-#  {'is_closed': False,
-#   'name': 'Frontier Restaurant',
-#   'price': 1,
-#   'review_count': 1373},
-#  {'is_closed': False,
-#   'name': 'Nexus Brewery',
-#   'price': 2,
-#   'review_count': 680},
-#  {'is_closed': False,
-#   'name': "Devon's Pop Smoke",
-#   'price': 2,
-#   'review_count': 54},
-#  {'is_closed': False, 'name': 'Philly Steaks', 'price': 2, 'review_count': 25}]
+#[{'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610},
+# {'name': 'Salt And Board',
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 11},
+# {'name': 'Frontier Restaurant',
+#  'price': 1,
+#  'is_closed': False,
+#  'review_count': 1373},
+# {'name': 'Nexus Brewery',
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 680},
+# {'name': "Devon's Pop Smoke",
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 54},
+# {'name': 'Philly Steaks', 'price': 2, 'is_closed': False, 'review_count': 25}]
 ```
 
 Let's say we now want to look at restaurants that are comparatively cheaper i.e. \$ or 1 as price. 
@@ -207,10 +169,10 @@ def cheapest_restaurants(restaurants):
 ```python
 cheapest_restaurants(restaurants)
 
-# [{'is_closed': False,
-#   'name': 'Frontier Restaurant',
-#   'price': 1,
-#   'review_count': 1373}]
+# [{'name': 'Frontier Restaurant',
+#  'price': 1,
+#  'is_closed': False,
+#  'review_count': 1373}]
 ```
 
 So we have only one restaurant in the data that meets the given criteria. Next, we shall write a function that filters out only those restaurants that 100 reviews or more, since we want to make sure there is some solid data points backing the reviews -- we are burgeoning data scientists after all!
@@ -226,9 +188,15 @@ def sufficiently_reviewed_restaurants(restaurants):
 sufficiently_reviewed_restaurants(restaurants)
 
 # [{'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610},
-#  {'name': 'Frontier Restaurant', 'price': 1, 'is_closed': False,  'review_count': 1373},
-#  {'name': 'Nexus Brewery', 'price': 2, 'is_closed': False, 'review_count': 680},
-#  {'name': 'Cocina Azul', 'price': 2, 'is_closed': True, 'review_count': 647}]
+# {'name': 'Frontier Restaurant',
+#  'price': 1,
+#  'is_closed': False,
+#  'review_count': 1373},
+# {'name': 'Nexus Brewery',
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 680},
+# {'name': 'Cocina Azul', 'price': 2, 'is_closed': True, 'review_count': 647}]
 ```
 
 ### Summary
