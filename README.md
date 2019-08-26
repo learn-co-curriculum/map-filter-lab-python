@@ -48,44 +48,6 @@ restaurants
 ```
 
 
-
-
-    [{'is_closed': False,
-      'name': 'Fork & Fig',
-      'price': '$$',
-      'review_count': 610},
-     {'is_closed': False,
-      'name': 'Salt And Board',
-      'price': '$$',
-      'review_count': 11},
-     {'is_closed': False,
-      'name': 'Frontier Restaurant',
-      'price': '$',
-      'review_count': 1373},
-     {'is_closed': False,
-      'name': 'Nexus Brewery',
-      'price': '$$',
-      'review_count': 680},
-     {'is_closed': False,
-      'name': "Devon's Pop Smoke",
-      'price': '$$',
-      'review_count': 54},
-     {'is_closed': True,
-      'name': 'Cocina Azul',
-      'price': '$$',
-      'review_count': 647},
-     {'is_closed': False,
-      'name': 'Philly Steaks',
-      'price': '$$',
-      'review_count': 25},
-     {'is_closed': True,
-      'name': 'Stripes Biscuit',
-      'price': '$$',
-      'review_count': 20}]
-
-
-
-
 ```python
 # __SOLUTION__ 
 restaurants
@@ -94,37 +56,37 @@ restaurants
 
 
 
-    [{'is_closed': False,
-      'name': 'Fork & Fig',
+    [{'name': 'Fork & Fig',
       'price': '$$',
+      'is_closed': False,
       'review_count': 610},
-     {'is_closed': False,
-      'name': 'Salt And Board',
+     {'name': 'Salt And Board',
       'price': '$$',
+      'is_closed': False,
       'review_count': 11},
-     {'is_closed': False,
-      'name': 'Frontier Restaurant',
+     {'name': 'Frontier Restaurant',
       'price': '$',
+      'is_closed': False,
       'review_count': 1373},
-     {'is_closed': False,
-      'name': 'Nexus Brewery',
+     {'name': 'Nexus Brewery',
       'price': '$$',
+      'is_closed': False,
       'review_count': 680},
-     {'is_closed': False,
-      'name': "Devon's Pop Smoke",
+     {'name': "Devon's Pop Smoke",
       'price': '$$',
+      'is_closed': False,
       'review_count': 54},
-     {'is_closed': True,
-      'name': 'Cocina Azul',
+     {'name': 'Cocina Azul',
       'price': '$$',
+      'is_closed': True,
       'review_count': 647},
-     {'is_closed': False,
-      'name': 'Philly Steaks',
+     {'name': 'Philly Steaks',
       'price': '$$',
+      'is_closed': False,
       'review_count': 25},
-     {'is_closed': True,
-      'name': 'Stripes Biscuit',
+     {'name': 'Stripes Biscuit',
       'price': '$$',
+      'is_closed': True,
       'review_count': 20}]
 
 
@@ -245,19 +207,19 @@ def format_restaurant(restaurant):
 
 
 ```python
-format_restaurant(restaurants[0]) # {'is_closed': False, 'name': 'Fork & Fig', 'price': 2, 'review_count': 610}
+format_restaurant(restaurants[0]) # {'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610}
 ```
 
 
 ```python
 # __SOLUTION__ 
-format_restaurant(restaurants[0]) # {'is_closed': False, 'name': 'Fork & Fig', 'price': 2, 'review_count': 610}
+format_restaurant(restaurants[0]) # {'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610}
 ```
 
 
 
 
-    {'is_closed': False, 'name': 'Fork & Fig', 'price': 2, 'review_count': 610}
+    {'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610}
 
 
 
@@ -280,29 +242,29 @@ def map_format_restaurants(restaurants):
 ```python
 map_format_restaurants(restaurants)
 
-# [{'is_closed': False, 'name': 'Fork & Fig', 'price': 2, 'review_count': 610},
-#  {'is_closed': False,
-#   'name': 'Salt And Board',
-#   'price': 2,
-#   'review_count': 11},
-#  {'is_closed': False,
-#   'name': 'Frontier Restaurant',
-#   'price': 1,
-#   'review_count': 1373},
-#  {'is_closed': False,
-#   'name': 'Nexus Brewery',
-#   'price': 2,
-#   'review_count': 680},
-#  {'is_closed': False,
-#   'name': "Devon's Pop Smoke",
-#   'price': 2,
-#   'review_count': 54},
-#  {'is_closed': True, 'name': 'Cocina Azul', 'price': 2, 'review_count': 647},
-#  {'is_closed': False, 'name': 'Philly Steaks', 'price': 2, 'review_count': 25},
-#  {'is_closed': True,
-#   'name': 'Stripes Biscuit',
-#   'price': 2,
-#   'review_count': 20}]
+#[{'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610},
+# {'name': 'Salt And Board',
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 11},
+# {'name': 'Frontier Restaurant',
+#  'price': 1,
+#  'is_closed': False,
+#  'review_count': 1373},
+# {'name': 'Nexus Brewery',
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 680},
+# {'name': "Devon's Pop Smoke",
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 54},
+# {'name': 'Cocina Azul', 'price': 2, 'is_closed': True, 'review_count': 647},
+# {'name': 'Philly Steaks', 'price': 2, 'is_closed': False, 'review_count': 25},
+# {'name': 'Stripes Biscuit',
+#  'price': 2,
+#  'is_closed': True,
+#  'review_count': 20}]
 ```
 
 
@@ -310,56 +272,56 @@ map_format_restaurants(restaurants)
 # __SOLUTION__ 
 map_format_restaurants(restaurants)
 
-# [{'is_closed': False, 'name': 'Fork & Fig', 'price': 2, 'review_count': 610},
-#  {'is_closed': False,
-#   'name': 'Salt And Board',
-#   'price': 2,
-#   'review_count': 11},
-#  {'is_closed': False,
-#   'name': 'Frontier Restaurant',
-#   'price': 1,
-#   'review_count': 1373},
-#  {'is_closed': False,
-#   'name': 'Nexus Brewery',
-#   'price': 2,
-#   'review_count': 680},
-#  {'is_closed': False,
-#   'name': "Devon's Pop Smoke",
-#   'price': 2,
-#   'review_count': 54},
-#  {'is_closed': True, 'name': 'Cocina Azul', 'price': 2, 'review_count': 647},
-#  {'is_closed': False, 'name': 'Philly Steaks', 'price': 2, 'review_count': 25},
-#  {'is_closed': True,
-#   'name': 'Stripes Biscuit',
-#   'price': 2,
-#   'review_count': 20}]
+#[{'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610},
+# {'name': 'Salt And Board',
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 11},
+# {'name': 'Frontier Restaurant',
+#  'price': 1,
+#  'is_closed': False,
+#  'review_count': 1373},
+# {'name': 'Nexus Brewery',
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 680},
+# {'name': "Devon's Pop Smoke",
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 54},
+# {'name': 'Cocina Azul', 'price': 2, 'is_closed': True, 'review_count': 647},
+# {'name': 'Philly Steaks', 'price': 2, 'is_closed': False, 'review_count': 25},
+# {'name': 'Stripes Biscuit',
+#  'price': 2,
+#  'is_closed': True,
+#  'review_count': 20}]
 ```
 
 
 
 
-    [{'is_closed': False, 'name': 'Fork & Fig', 'price': 2, 'review_count': 610},
-     {'is_closed': False,
-      'name': 'Salt And Board',
+    [{'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610},
+     {'name': 'Salt And Board',
       'price': 2,
+      'is_closed': False,
       'review_count': 11},
-     {'is_closed': False,
-      'name': 'Frontier Restaurant',
+     {'name': 'Frontier Restaurant',
       'price': 1,
+      'is_closed': False,
       'review_count': 1373},
-     {'is_closed': False,
-      'name': 'Nexus Brewery',
+     {'name': 'Nexus Brewery',
       'price': 2,
+      'is_closed': False,
       'review_count': 680},
-     {'is_closed': False,
-      'name': "Devon's Pop Smoke",
+     {'name': "Devon's Pop Smoke",
       'price': 2,
+      'is_closed': False,
       'review_count': 54},
-     {'is_closed': True, 'name': 'Cocina Azul', 'price': 2, 'review_count': 647},
-     {'is_closed': False, 'name': 'Philly Steaks', 'price': 2, 'review_count': 25},
-     {'is_closed': True,
-      'name': 'Stripes Biscuit',
+     {'name': 'Cocina Azul', 'price': 2, 'is_closed': True, 'review_count': 647},
+     {'name': 'Philly Steaks', 'price': 2, 'is_closed': False, 'review_count': 25},
+     {'name': 'Stripes Biscuit',
       'price': 2,
+      'is_closed': True,
       'review_count': 20}]
 
 
@@ -387,24 +349,24 @@ def open_restaurants(restaurants):
 ```python
 open_restaurants(restaurants)
 
-# [{'is_closed': False, 'name': 'Fork & Fig', 'price': 2, 'review_count': 610},
-#  {'is_closed': False,
-#   'name': 'Salt And Board',
-#   'price': 2,
-#   'review_count': 11},
-#  {'is_closed': False,
-#   'name': 'Frontier Restaurant',
-#   'price': 1,
-#   'review_count': 1373},
-#  {'is_closed': False,
-#   'name': 'Nexus Brewery',
-#   'price': 2,
-#   'review_count': 680},
-#  {'is_closed': False,
-#   'name': "Devon's Pop Smoke",
-#   'price': 2,
-#   'review_count': 54},
-#  {'is_closed': False, 'name': 'Philly Steaks', 'price': 2, 'review_count': 25}]
+#[{'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610},
+# {'name': 'Salt And Board',
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 11},
+# {'name': 'Frontier Restaurant',
+#  'price': 1,
+#  'is_closed': False,
+#  'review_count': 1373},
+# {'name': 'Nexus Brewery',
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 680},
+# {'name': "Devon's Pop Smoke",
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 54},
+# {'name': 'Philly Steaks', 'price': 2, 'is_closed': False, 'review_count': 25}]
 ```
 
 
@@ -412,47 +374,47 @@ open_restaurants(restaurants)
 # __SOLUTION__ 
 open_restaurants(restaurants)
 
-# [{'is_closed': False, 'name': 'Fork & Fig', 'price': 2, 'review_count': 610},
-#  {'is_closed': False,
-#   'name': 'Salt And Board',
-#   'price': 2,
-#   'review_count': 11},
-#  {'is_closed': False,
-#   'name': 'Frontier Restaurant',
-#   'price': 1,
-#   'review_count': 1373},
-#  {'is_closed': False,
-#   'name': 'Nexus Brewery',
-#   'price': 2,
-#   'review_count': 680},
-#  {'is_closed': False,
-#   'name': "Devon's Pop Smoke",
-#   'price': 2,
-#   'review_count': 54},
-#  {'is_closed': False, 'name': 'Philly Steaks', 'price': 2, 'review_count': 25}]
+#[{'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610},
+# {'name': 'Salt And Board',
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 11},
+# {'name': 'Frontier Restaurant',
+#  'price': 1,
+#  'is_closed': False,
+#  'review_count': 1373},
+# {'name': 'Nexus Brewery',
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 680},
+# {'name': "Devon's Pop Smoke",
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 54},
+# {'name': 'Philly Steaks', 'price': 2, 'is_closed': False, 'review_count': 25}]
 ```
 
 
 
 
-    [{'is_closed': False, 'name': 'Fork & Fig', 'price': 2, 'review_count': 610},
-     {'is_closed': False,
-      'name': 'Salt And Board',
+    [{'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610},
+     {'name': 'Salt And Board',
       'price': 2,
+      'is_closed': False,
       'review_count': 11},
-     {'is_closed': False,
-      'name': 'Frontier Restaurant',
+     {'name': 'Frontier Restaurant',
       'price': 1,
+      'is_closed': False,
       'review_count': 1373},
-     {'is_closed': False,
-      'name': 'Nexus Brewery',
+     {'name': 'Nexus Brewery',
       'price': 2,
+      'is_closed': False,
       'review_count': 680},
-     {'is_closed': False,
-      'name': "Devon's Pop Smoke",
+     {'name': "Devon's Pop Smoke",
       'price': 2,
+      'is_closed': False,
       'review_count': 54},
-     {'is_closed': False, 'name': 'Philly Steaks', 'price': 2, 'review_count': 25}]
+     {'name': 'Philly Steaks', 'price': 2, 'is_closed': False, 'review_count': 25}]
 
 
 
@@ -477,10 +439,10 @@ def cheap_restaurants(restaurants):
 ```python
 cheapest_restaurants(restaurants)
 
-# [{'is_closed': False,
-#   'name': 'Frontier Restaurant',
-#   'price': 1,
-#   'review_count': 1373}]
+# [{'name': 'Frontier Restaurant',
+#  'price': 1,
+#  'is_closed': False,
+#  'review_count': 1373}]
 ```
 
 
@@ -488,18 +450,18 @@ cheapest_restaurants(restaurants)
 # __SOLUTION__ 
 cheap_restaurants(restaurants)
 
-# [{'is_closed': False,
-#   'name': 'Frontier Restaurant',
-#   'price': 1,
-#   'review_count': 1373}]
+# [{'name': 'Frontier Restaurant',
+#  'price': 1,
+#  'is_closed': False,
+#  'review_count': 1373}]
 ```
 
 
 
 
-    [{'is_closed': False,
-      'name': 'Frontier Restaurant',
+    [{'name': 'Frontier Restaurant',
       'price': 1,
+      'is_closed': False,
       'review_count': 1373}]
 
 
@@ -524,9 +486,15 @@ def sufficiently_reviewed_restaurants(restaurants):
 sufficiently_reviewed_restaurants(restaurants)
 
 # [{'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610},
-#  {'name': 'Frontier Restaurant', 'price': 1, 'is_closed': False,  'review_count': 1373},
-#  {'name': 'Nexus Brewery', 'price': 2, 'is_closed': False, 'review_count': 680},
-#  {'name': 'Cocina Azul', 'price': 2, 'is_closed': True, 'review_count': 647}]
+# {'name': 'Frontier Restaurant',
+#  'price': 1,
+#  'is_closed': False,
+#  'review_count': 1373},
+# {'name': 'Nexus Brewery',
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 680},
+# {'name': 'Cocina Azul', 'price': 2, 'is_closed': True, 'review_count': 647}]
 ```
 
 
@@ -535,24 +503,30 @@ sufficiently_reviewed_restaurants(restaurants)
 sufficiently_reviewed_restaurants(restaurants)
 
 # [{'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610},
-#  {'name': 'Frontier Restaurant', 'price': 1, 'is_closed': False,  'review_count': 1373},
-#  {'name': 'Nexus Brewery', 'price': 2, 'is_closed': False, 'review_count': 680},
-#  {'name': 'Cocina Azul', 'price': 2, 'is_closed': True, 'review_count': 647}]
+# {'name': 'Frontier Restaurant',
+#  'price': 1,
+#  'is_closed': False,
+#  'review_count': 1373},
+# {'name': 'Nexus Brewery',
+#  'price': 2,
+#  'is_closed': False,
+#  'review_count': 680},
+# {'name': 'Cocina Azul', 'price': 2, 'is_closed': True, 'review_count': 647}]
 ```
 
 
 
 
-    [{'is_closed': False, 'name': 'Fork & Fig', 'price': 2, 'review_count': 610},
-     {'is_closed': False,
-      'name': 'Frontier Restaurant',
+    [{'name': 'Fork & Fig', 'price': 2, 'is_closed': False, 'review_count': 610},
+     {'name': 'Frontier Restaurant',
       'price': 1,
+      'is_closed': False,
       'review_count': 1373},
-     {'is_closed': False,
-      'name': 'Nexus Brewery',
+     {'name': 'Nexus Brewery',
       'price': 2,
+      'is_closed': False,
       'review_count': 680},
-     {'is_closed': True, 'name': 'Cocina Azul', 'price': 2, 'review_count': 647}]
+     {'name': 'Cocina Azul', 'price': 2, 'is_closed': True, 'review_count': 647}]
 
 
 
