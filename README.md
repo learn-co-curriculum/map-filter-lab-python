@@ -72,7 +72,7 @@ list(map(lambda x: x + 5, numbers))
 
 Note that you don't always have to use `x` as the variable. You can define the variable with any name you want as long as the syntax is correct!
 
-The cool thing is that `lambda` functions are *fully* customizable. They are not just limited to numeric applications. You'll see how `lambda` functions can be used to transform text data below with the Yelp data set.
+The cool thing is that `lambda` functions are *customizable*. They are not just limited to numeric applications. You'll see how `lambda` functions can be used to transform text data below with the Yelp data set.
 
 ### Yelp data
 
