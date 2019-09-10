@@ -2,7 +2,8 @@
 # Map, Filter and Lambda in Python Lab
 
 ## Objectives
-* Apply and combine the skills covered for map, filter and lambda functions.
+* Apply and combine the skills covered for map and filter functions.
+* Learn how to write and use lambda functions for transforming data.
 * Modify given data using map and lambda functions as an alternative to writing for loops.
 * Filter given data using filter function to only include the data that meets a given criteria. 
 
@@ -10,23 +11,55 @@
 
 In this lab, we'll put our new knowledge about `map` and `filter` to the test. We'll also introduce `lambda` functions as a convenient tool for transforming data on the fly. As a test case, we'll be working with Yelp data again. Let's get started!
 
-### Lambda Functions
+### Lambda functions
 
 Recall that `map` applies a given function to every element of an iterable. Previously, you've seen `map` used with a variety of built-in Python functions. As you begin to work with more complicated data, you may need to use a custom function that performs a unique task for which there is no built-in Python function. This is exactly what `lambda` functions are used for. 
 
-Say you wanted to add 5 to every element in a list. Unfortunately, there is no built-in Python function to add 5. However, `lambda` can be used to define a custom function to do that! The syntax for defining a lambda function that adds 5 is shown below:
-
-```python
-lambda x: x + 5
-```
-
-As you might have guessed, `x` here is a variable and the `lambda` function simply adds 5 to it. Now that you understand how to write `lambda` functions, use `map` to apply the `lambda` function above to add 5 to every number in the list of numbers below.
+Say you wanted to add 5 to every element in the list of numbers shown below:
 
 
 ```python
 # List of numbers
 numbers = [1, 3, 8, 9, 11, 20]
+numbers
+```
 
+
+
+
+    [1, 3, 8, 9, 11, 20]
+
+
+
+Unfortunately, you can't use the addition operator as this results in a `TypeError`:
+
+
+```python
+numbers + 5
+```
+
+
+    ---------------------------------------------------------------------------
+
+    TypeError                                 Traceback (most recent call last)
+
+    <ipython-input-2-be56e3573393> in <module>()
+    ----> 1 numbers + 5
+    
+
+    TypeError: can only concatenate list (not "int") to list
+
+
+If there were a built-in Python function to add 5, you might just use that function with `map` to apply it to all of the numbers in the list. But, sadly, no such function exists. The good news is that `lambda` can be used to define a custom function that adds 5! The syntax for defining a lambda function that adds 5 is shown below:
+
+```python
+lambda x: x + 5
+```
+
+As you might have guessed, `x` here is a variable and the `lambda` function simply adds 5 to it. Now that you understand how to write `lambda` functions, use `map` to apply the `lambda` function above to add 5 to every number in the `numbers` list.
+
+
+```python
 list(map(lambda x: x + 5, numbers))
 ```
 
@@ -37,7 +70,9 @@ list(map(lambda x: x + 5, numbers))
 
 
 
-Note that you don't always have to use `x` as the variable. You can define the variable with any name you want!
+Note that you don't always have to use `x` as the variable. You can define the variable with any name you want as long!
+
+The cool thing is that `lambda` functions are *fully* customizable. They are not just limited to numeric applications. You'll see how `lambda` functions can be used to transform text data below with the Yelp data set.
 
 ### Yelp data
 
@@ -73,7 +108,7 @@ restaurants = list(map(lambda restaurant: dict(name=restaurant['name'],
                                           ), yelp_restaurants))
 ```
 
-We have a list of five restaurants from the Yelp Api.  Let's take a look at the list.
+We now have a list of restaurants from the Yelp Api.  Let's take a look at the list.
 
 
 ```python
