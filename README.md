@@ -27,7 +27,7 @@ lambda x: x + 5
 
 As you might have guessed, `x` here is a variable and the `lambda` function simply adds 5 to it. Now that you understand how to write `lambda` functions, use `map` to apply the `lambda` function above to add 5 to every number in the `numbers` list.
 
-Note that you don't always have to use `x` as the variable. You can define the variable with any name you want as long!
+Note that you don't always have to use `x` as the variable. You can define the variable with any name you want as long as the syntax is correct!
 
 The cool thing is that `lambda` functions are *fully* customizable. They are not just limited to numeric applications. You'll see how `lambda` functions can be used to transform text data below with the Yelp data set.
 
@@ -380,4 +380,4 @@ sufficiently_reviewed_restaurants(restaurants)
 
 ### Summary
 
-Neat! In this lab, we successfully proved our prowess when it comes to iterating over each element of a list with both `map` and `filter`! We used `map` to format our data into ways that better help us answer questions and extrapolate insights. We used `filter` to return subsets of our data like our restaurants that were only one $ or our restaurants that had 100 or more reviews.
+Neat! In this lab, we successfully proved our prowess when it comes to iterating over each element of a list with both `map` and `filter`! We also learned about `lambda` functions and how to use them. We used `map` to format our data into ways that better help us answer questions and extrapolate insights. We used `filter` to return subsets of our data like our restaurants that were only one $ or our restaurants that had 100 or more reviews.
