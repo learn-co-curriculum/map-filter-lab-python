@@ -2,10 +2,10 @@
 # Map, Filter and Lambda in Python Lab
 
 ## Objectives
-* Apply and combine the skills covered for map and filter functions.
-* Learn how to write and use lambda functions for transforming data.
-* Modify given data using map and lambda functions as an alternative to writing for loops.
-* Filter given data using filter function to only include the data that meets a given criteria. 
+* Apply and combine the skills covered for map and filter functions
+* Learn how to write and use lambda functions for transforming data
+* Modify given data using map and lambda functions as an alternative to writing for loops
+* Filter given data using filter function to only include the data that meets a given criteria
 
 ### Introduction
 
