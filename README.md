@@ -9,7 +9,7 @@
 
 ### Introduction
 
-In this lab, we'll put our new knowledge about `map` and `filter` to the test. We'll also introduce `lambda` functions as a convenient tool for transforming data on the fly. As a test case, we'll be working with Yelp data again. Let's get started!
+In this lab, we'll put our new knowledge about `map` and `filter` to the test. We'll also introduce `lambda` functions as a convenient tool for transforming data on the fly. As a test case, we'll be working with Yelp data again. Let's get started! 
 
 ### Lambda functions
 
